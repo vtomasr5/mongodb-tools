@@ -5,7 +5,7 @@ Go-based tools for MongoDB container orchestration.
 NOTE: This is a hard fork of https://github.com/percona/mongodb-orchestration-tools
 
 **Tools**:
-- **mongodb-healthcheck**: a tool for running Kubernetes liveness check
+- **mongodb-healthcheck**: a tool for running Kubernetes liveness and readiness checks
 
 ## Required
 
