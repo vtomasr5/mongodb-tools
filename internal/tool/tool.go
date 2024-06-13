@@ -21,6 +21,7 @@ import (
 	"runtime"
 
 	"github.com/alecthomas/kingpin"
+	"github.com/sirupsen/logrus"
 	tools "github.com/vtomasr5/mongodb-tools"
 	"github.com/vtomasr5/mongodb-tools/internal/logger"
 )
@@ -36,9 +37,13 @@ func New(help, commit, branch string) (*kingpin.Application, *bool) {
 		"%s version %s\ngit commit %s, branch %s\ngo version %s",
 		app.Name, tools.Version, commit, branch, runtime.Version(),
 	))
+	textFormatter := &logrus.TextFormatter{
+		DisableColors: true,
+		FullTimestamp: true,
+	}
 	return app, logger.SetupLogger(
 		app,
-		logger.GetLogFormatter(),
+		textFormatter,
 		os.Stdout,
 	)
 }

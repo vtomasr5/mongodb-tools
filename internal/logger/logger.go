@@ -30,7 +30,7 @@ func enableVerboseLogging(ctx *kingpin.ParseContext) error {
 	return nil
 }
 
-// SetupLogger configures github.com/srupsen/logrus for logging
+// SetupLogger configures github.com/sirupsen/logrus for logging
 func SetupLogger(app *kingpin.Application, formatter log.Formatter, out io.Writer) *bool {
 	log.SetOutput(out)
 	log.SetFormatter(formatter)

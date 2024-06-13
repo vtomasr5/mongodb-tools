@@ -20,7 +20,6 @@ import (
 	"time"
 
 	"github.com/alecthomas/kingpin"
-	"github.com/vtomasr5/mongodb-tools/internal/dcos"
 	"github.com/vtomasr5/mongodb-tools/pkg"
 	"gopkg.in/mgo.v2"
 )
@@ -42,13 +41,13 @@ func getDefaultMongoDBAddress() string {
 	hostname := DefaultMongoDBHost
 
 	// use the full hostname when using SSL mode
-	if os.Getenv(pkg.EnvMongoDBNetSSLEnabled) == "true" {
-		frameworkHost := os.Getenv(dcos.EnvFrameworkHost)
-		taskName := os.Getenv(dcos.EnvTaskName)
-		if taskName != "" && frameworkHost != "" {
-			hostname = taskName + "." + frameworkHost
-		}
-	}
+	// if os.Getenv(pkg.EnvMongoDBNetSSLEnabled) == "true" {
+	// 	frameworkHost := os.Getenv(dcos.EnvFrameworkHost)
+	// 	taskName := os.Getenv(dcos.EnvTaskName)
+	// 	if taskName != "" && frameworkHost != "" {
+	// 		hostname = taskName + "." + frameworkHost
+	// 	}
+	// }
 
 	mongodbPort := os.Getenv(pkg.EnvMongoDBPort)
 	if mongodbPort != "" {
