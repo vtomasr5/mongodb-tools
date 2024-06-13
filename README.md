@@ -14,6 +14,5 @@ These tools were designed/tested for use with [Percona Server for MongoDB](https
 
 ## Build
 1. Install go1.22+ and 'make'
-2. Run 'make' in git directory
+2. Run 'make k8s'
 3. Find binaries in 'bin' directory
-
