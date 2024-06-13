@@ -1,15 +1,15 @@
 ARG GOLANG_DOCKERHUB_TAG
+FROM golang:$GOLANG_DOCKERHUB_TAG as builder
 
-FROM golang:$GOLANG_DOCKERHUB_TAG
+WORKDIR /mongodb-tools
 
-WORKDIR /go/src/github.com/vtomasr5/mongodb-tools
 COPY . .
 
-RUN apt-get update && \
-    apt-get install -y zip && \
-    apt-get clean all
+RUN make bin/mongodb-healthcheck
 
-CMD make k8s
-    #make test-full && \
-    #&& \
-    #upx bin/*
+# Run stage
+FROM scratch
+
+COPY --from=builder /mongodb-tools/bin/mongodb-healthcheck /mongodb-healthcheck
+
+ENTRYPOINT ["/mongodb-healthcheck"]
